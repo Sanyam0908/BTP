@@ -69,8 +69,13 @@ class SymptomChecker extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        height: 50,
-                        padding: EdgeInsets.only(left: 20, right: 10),
+                        //height: 50,
+                        padding: EdgeInsets.only(
+                          left: 20,
+                          right: 10,
+                          top: 18,
+                          bottom: 18,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
                           color: Color(0xFFe4efef),
@@ -214,7 +219,7 @@ class SymptomChecker extends StatelessWidget {
             top: Dimensions.screenHeight - Dimensions.height70,
             child: GestureDetector(
               onTap: () {
-                Get.to(()=>ScreenOne());
+                Get.to(() => ScreenOne());
               },
               child: Container(
                 height: 70,
