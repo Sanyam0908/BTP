@@ -1,15 +1,29 @@
 import 'package:btp/screens/disease.dart';
 import 'package:btp/screens/symptoms.dart';
+import 'package:btp/screens/symptoms_list.dart';
 import 'package:btp/widgets/symptom_column.dart';
 import 'package:btp/widgets/symptom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<String> selectedSymptoms = [];
+  SymptomsList symptoms = SymptomsList();
+
+  @override
   Widget build(BuildContext context) {
+    for (var x = 0; x < selectedSymptoms.length; x++) {
+      if (!symptoms.selectedSymptoms.contains(selectedSymptoms[x])) {
+        symptoms.addData(selectedSymptoms[x]);
+      }
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -54,36 +68,26 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SymptomContainer(
-                        text: 'High Fever',
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      SymptomContainer(
-                        text: 'Abdominal Pain',
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SymptomContainer(
-                        text: 'Cough',
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      SymptomContainer(
-                        text: 'Running Nose',
-                      ),
-                    ],
+                  Container(
+                    height: 55,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: symptoms.selectedSymptoms.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onDoubleTap: () {
+                            // symptoms.deleteData(symptoms.selectedSymptoms[index]);
+                            // setState(() {
+                              
+                            // });
+                          },
+                          child: Container(
+                            child: SymptomContainer(
+                                text: symptoms.selectedSymptoms[index]),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -123,13 +127,9 @@ class Home extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Symptoms(),
-                            ),
-                          );
+                        onTap: () async {
+                          selectedSymptoms = await Get.to(() => Symptoms());
+                          setState(() {});
                         },
                         child: Text(
                           'See more',
@@ -147,21 +147,45 @@ class Home extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SymptomColumn(
-                        imageUrl: 'assets/image/fever.png',
-                        text: 'Fever',
+                      GestureDetector(
+                        onTap: () {
+                          selectedSymptoms.add('Fever');
+                          setState(() {});
+                        },
+                        child: SymptomColumn(
+                          imageUrl: 'assets/image/fever.png',
+                          text: 'Fever',
+                        ),
                       ),
-                      SymptomColumn(
-                        imageUrl: 'assets/image/cough.png',
-                        text: 'Cough',
+                      GestureDetector(
+                        onTap: () {
+                          selectedSymptoms.add('Cough');
+                          setState(() {});
+                        },
+                        child: SymptomColumn(
+                          imageUrl: 'assets/image/cough.png',
+                          text: 'Cough',
+                        ),
                       ),
-                      SymptomColumn(
-                        imageUrl: 'assets/image/vomit.png',
-                        text: 'Vomitting',
+                      GestureDetector(
+                        onTap: () {
+                          selectedSymptoms.add('Vomitting');
+                          setState(() {});
+                        },
+                        child: SymptomColumn(
+                          imageUrl: 'assets/image/vomit.png',
+                          text: 'Vomitting',
+                        ),
                       ),
-                      SymptomColumn(
-                        imageUrl: 'assets/image/running-nose.png',
-                        text: 'Running Nose',
+                      GestureDetector(
+                        onTap: () {
+                          selectedSymptoms.add('Running Nose');
+                          setState(() {});
+                        },
+                        child: SymptomColumn(
+                          imageUrl: 'assets/image/running-nose.png',
+                          text: 'Running Nose',
+                        ),
                       ),
                     ],
                   ),
@@ -171,21 +195,45 @@ class Home extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SymptomColumn(
-                        imageUrl: 'assets/image/diarrhea.png',
-                        text: 'Diarrhea',
+                      GestureDetector(
+                        onTap: () {
+                          selectedSymptoms.add('Diarrhea');
+                          setState(() {});
+                        },
+                        child: SymptomColumn(
+                          imageUrl: 'assets/image/diarrhea.png',
+                          text: 'Diarrhea',
+                        ),
                       ),
-                      SymptomColumn(
-                        imageUrl: 'assets/image/decreased-concentration.png',
-                        text: 'Headache',
+                      GestureDetector(
+                        onTap: () {
+                          selectedSymptoms.add('Headache');
+                          setState(() {});
+                        },
+                        child: SymptomColumn(
+                          imageUrl: 'assets/image/decreased-concentration.png',
+                          text: 'Headache',
+                        ),
                       ),
-                      SymptomColumn(
-                        imageUrl: 'assets/image/shivers.png',
-                        text: 'Shivering',
+                      GestureDetector(
+                        onTap: () {
+                          selectedSymptoms.add('Shivering');
+                          setState(() {});
+                        },
+                        child: SymptomColumn(
+                          imageUrl: 'assets/image/shivers.png',
+                          text: 'Shivering',
+                        ),
                       ),
-                      SymptomColumn(
-                        imageUrl: 'assets/image/broken-bone.png',
-                        text: 'Joint Pain',
+                      GestureDetector(
+                        onTap: () {
+                          selectedSymptoms.add('Joint Pain');
+                          setState(() {});
+                        },
+                        child: SymptomColumn(
+                          imageUrl: 'assets/image/broken-bone.png',
+                          text: 'Joint Pain',
+                        ),
                       ),
                     ],
                   ),

@@ -1,7 +1,7 @@
 # btp
 
 A new Flutter project.
-Made by Sanyam
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

@@ -1,12 +1,17 @@
+import 'package:btp/screens/symptoms_list.dart';
 import 'package:flutter/material.dart';
 
 class SymptomContainer extends StatelessWidget {
   final String text;
-  const SymptomContainer({Key? key, required this.text}) : super(key: key);
+  SymptomContainer({Key? key, required this.text}) : super(key: key);
 
+  SymptomsList symptoms = SymptomsList();
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(
+        right: 10,
+      ),
       padding: EdgeInsets.only(
         left: 20,
         right: 10,
@@ -29,10 +34,15 @@ class SymptomContainer extends StatelessWidget {
           SizedBox(
             width: 5,
           ),
-          Icon(
-            Icons.close,
-            size: 15,
-            color: Colors.blueGrey,
+          GestureDetector(
+            onTap: () {
+              //symptoms.deleteData(text);
+            },
+            child: Icon(
+              Icons.close,
+              size: 15,
+              color: Colors.blueGrey,
+            ),
           ),
         ],
       ),

@@ -136,4 +136,17 @@ class SymptomsList {
   ];
 
   List<String> get symptomsList => _symptomsList;
+
+  List<String> _selectedSymptoms = [];
+
+  void addData(String data) {
+    _selectedSymptoms.add(data);
+  }
+
+  void deleteData(String data) {
+    // _selectedSymptoms.remove(data);
+    // _selectedSymptoms.removeLast();
+  }
+
+  List<String> get selectedSymptoms => _selectedSymptoms;
 }

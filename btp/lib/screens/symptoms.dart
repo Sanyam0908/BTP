@@ -3,12 +3,27 @@ import 'package:btp/screens/symptoms_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Symptoms extends StatelessWidget {
-  const Symptoms({Key? key}) : super(key: key);
+class Symptoms extends StatefulWidget {
+  Symptoms({Key? key}) : super(key: key);
+
+  @override
+  State<Symptoms> createState() => _SymptomsState();
+}
+
+class _SymptomsState extends State<Symptoms> {
+  SymptomsList symptoms = SymptomsList();
+  var _values = List<bool>.filled(133, false);
+  List<String> selectedSymptoms = [];
+  void updateList() {
+    for (var x = 0; x < symptoms.symptomsList.length; x++) {
+      if (_values[x]) {
+        selectedSymptoms.add(symptoms.symptomsList[x]);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    SymptomsList symptoms = SymptomsList();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -17,7 +32,9 @@ class Symptoms extends StatelessWidget {
         backgroundColor: Color(0xFF2d8089),
         leading: GestureDetector(
           onTap: () {
-            Navigator.pop(context);
+            //Navigator.pop(context);
+            updateList();
+            Get.back(result: selectedSymptoms);
           },
           child: Icon(
             Icons.arrow_back,
@@ -79,8 +96,12 @@ class Symptoms extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: CheckboxListTile(
-                          value: false,
-                          onChanged: (context) {},
+                          value: _values[index],
+                          onChanged: (value) {
+                            setState(() {
+                              _values[index] = value!;
+                            });
+                          },
                           checkColor: Color(0xFF2d8089),
                           activeColor: Color(0xFFe4efef),
                           side: BorderSide(
@@ -105,7 +126,8 @@ class Symptoms extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                updateList();
+                Get.back(result: selectedSymptoms);
               },
               child: Container(
                 decoration: BoxDecoration(
