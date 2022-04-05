@@ -16,14 +16,23 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<String> selectedSymptoms = [];
   SymptomsList symptoms = SymptomsList();
+  List<String> symptomsList = SymptomsList().symptomsList;
 
-  @override
-  Widget build(BuildContext context) {
+  void addSelectedSymptoms() {
     for (var x = 0; x < selectedSymptoms.length; x++) {
       if (!symptoms.selectedSymptoms.contains(selectedSymptoms[x])) {
         symptoms.addData(selectedSymptoms[x]);
       }
     }
+  }
+
+  void deleteSelected(String str) {
+    symptoms.deleteData(str);
+    selectedSymptoms = symptoms.selectedSymptoms;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -74,16 +83,31 @@ class _HomeState extends State<Home> {
                       scrollDirection: Axis.horizontal,
                       itemCount: symptoms.selectedSymptoms.length,
                       itemBuilder: (context, index) {
+                        final selSymptom = symptoms.selectedSymptoms[index];
                         return GestureDetector(
-                          onDoubleTap: () {
-                            // symptoms.deleteData(symptoms.selectedSymptoms[index]);
-                            // setState(() {
-                              
-                            // });
-                          },
-                          child: Container(
-                            child: SymptomContainer(
-                                text: symptoms.selectedSymptoms[index]),
+                          // onDoubleTap: () {
+                          //   setState(() {
+                          //     deleteSelected(selSymptom);
+                          //   });
+                          // },
+                          child: Row(
+                            children: [
+                              SymptomContainer(
+                                text: selSymptom,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    deleteSelected(selSymptom);
+                                  });
+                                },
+                                child: Icon(
+                                  Icons.close,
+                                  size: 20,
+                                  color: Colors.blueGrey,
+                                ),
+                              ),
+                            ],
                           ),
                         );
                       },
@@ -129,7 +153,9 @@ class _HomeState extends State<Home> {
                       GestureDetector(
                         onTap: () async {
                           selectedSymptoms = await Get.to(() => Symptoms());
-                          setState(() {});
+                          setState(() {
+                            addSelectedSymptoms();
+                          });
                         },
                         child: Text(
                           'See more',
@@ -149,8 +175,12 @@ class _HomeState extends State<Home> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          selectedSymptoms.add('Fever');
-                          setState(() {});
+                          if (!selectedSymptoms.contains('Fever')) {
+                            selectedSymptoms.add('Fever');
+                            setState(() {
+                              addSelectedSymptoms();
+                            });
+                          }
                         },
                         child: SymptomColumn(
                           imageUrl: 'assets/image/fever.png',
@@ -159,8 +189,12 @@ class _HomeState extends State<Home> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          selectedSymptoms.add('Cough');
-                          setState(() {});
+                          if (!selectedSymptoms.contains('Cough')) {
+                            selectedSymptoms.add('Cough');
+                            setState(() {
+                              addSelectedSymptoms();
+                            });
+                          }
                         },
                         child: SymptomColumn(
                           imageUrl: 'assets/image/cough.png',
@@ -169,8 +203,12 @@ class _HomeState extends State<Home> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          selectedSymptoms.add('Vomitting');
-                          setState(() {});
+                          if (!selectedSymptoms.contains('Vomitting')) {
+                            selectedSymptoms.add('Vomitting');
+                            setState(() {
+                              addSelectedSymptoms();
+                            });
+                          }
                         },
                         child: SymptomColumn(
                           imageUrl: 'assets/image/vomit.png',
@@ -179,8 +217,12 @@ class _HomeState extends State<Home> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          selectedSymptoms.add('Running Nose');
-                          setState(() {});
+                          if (!selectedSymptoms.contains('Runnning Nose')) {
+                            selectedSymptoms.add('Runnning Nose');
+                            setState(() {
+                              addSelectedSymptoms();
+                            });
+                          }
                         },
                         child: SymptomColumn(
                           imageUrl: 'assets/image/running-nose.png',
@@ -197,8 +239,12 @@ class _HomeState extends State<Home> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          selectedSymptoms.add('Diarrhea');
-                          setState(() {});
+                          if (!selectedSymptoms.contains('Diarrhea')) {
+                            selectedSymptoms.add('Diarrhea');
+                            setState(() {
+                              addSelectedSymptoms();
+                            });
+                          }
                         },
                         child: SymptomColumn(
                           imageUrl: 'assets/image/diarrhea.png',
@@ -207,8 +253,12 @@ class _HomeState extends State<Home> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          selectedSymptoms.add('Headache');
-                          setState(() {});
+                          if (!selectedSymptoms.contains('Headache')) {
+                            selectedSymptoms.add('Headache');
+                            setState(() {
+                              addSelectedSymptoms();
+                            });
+                          }
                         },
                         child: SymptomColumn(
                           imageUrl: 'assets/image/decreased-concentration.png',
@@ -217,8 +267,12 @@ class _HomeState extends State<Home> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          selectedSymptoms.add('Shivering');
-                          setState(() {});
+                          if (!selectedSymptoms.contains('Shivering')) {
+                            selectedSymptoms.add('Shivering');
+                            setState(() {
+                              addSelectedSymptoms();
+                            });
+                          }
                         },
                         child: SymptomColumn(
                           imageUrl: 'assets/image/shivers.png',
@@ -227,8 +281,12 @@ class _HomeState extends State<Home> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          selectedSymptoms.add('Joint Pain');
-                          setState(() {});
+                          if (!selectedSymptoms.contains('Joint Pain')) {
+                            selectedSymptoms.add('Joint Pain');
+                            setState(() {
+                              addSelectedSymptoms();
+                            });
+                          }
                         },
                         child: SymptomColumn(
                           imageUrl: 'assets/image/broken-bone.png',

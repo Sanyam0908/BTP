@@ -12,12 +12,14 @@ class Symptoms extends StatefulWidget {
 
 class _SymptomsState extends State<Symptoms> {
   SymptomsList symptoms = SymptomsList();
-  var _values = List<bool>.filled(133, false);
+  List<bool> _values = List<bool>.filled(133, false);
+  List<String> symptomsList = SymptomsList().symptomsList;
   List<String> selectedSymptoms = [];
+
   void updateList() {
-    for (var x = 0; x < symptoms.symptomsList.length; x++) {
+    for (var x = 0; x < symptomsList.length; x++) {
       if (_values[x]) {
-        selectedSymptoms.add(symptoms.symptomsList[x]);
+        selectedSymptoms.add(symptomsList[x]);
       }
     }
   }
@@ -34,6 +36,7 @@ class _SymptomsState extends State<Symptoms> {
           onTap: () {
             //Navigator.pop(context);
             updateList();
+            FocusManager.instance.primaryFocus?.unfocus();
             Get.back(result: selectedSymptoms);
           },
           child: Icon(
@@ -52,7 +55,7 @@ class _SymptomsState extends State<Symptoms> {
           children: [
             TextField(
               decoration: InputDecoration(
-                suffixIcon: Icon(
+                prefixIcon: Icon(
                   Icons.search,
                   color: Color(0xFF2d8089),
                 ),
@@ -68,6 +71,7 @@ class _SymptomsState extends State<Symptoms> {
                   ),
                 ),
               ),
+              onChanged: searchSymptom,
             ),
             SizedBox(
               height: 10,
@@ -79,8 +83,9 @@ class _SymptomsState extends State<Symptoms> {
                   child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: symptoms.symptomsList.length,
+                    itemCount: symptomsList.length,
                     itemBuilder: (context, index) {
+                      final symptom = symptomsList[index];
                       return Container(
                         margin: EdgeInsets.only(
                           top: 10,
@@ -108,7 +113,7 @@ class _SymptomsState extends State<Symptoms> {
                             color: Colors.blueGrey,
                           ),
                           title: Text(
-                            symptoms.symptomsList[index],
+                            symptomsList[index],
                             style: TextStyle(
                               color: Color(0xFF2d8089),
                               fontWeight: FontWeight.w500,
@@ -127,6 +132,7 @@ class _SymptomsState extends State<Symptoms> {
             GestureDetector(
               onTap: () {
                 updateList();
+                FocusManager.instance.primaryFocus?.unfocus();
                 Get.back(result: selectedSymptoms);
               },
               child: Container(
@@ -150,5 +156,18 @@ class _SymptomsState extends State<Symptoms> {
         ),
       ),
     );
+  }
+
+  void searchSymptom(String query) {
+    final suggestions = symptomsList.where((symptom) {
+      final input = query.toLowerCase();
+      final symptomTitle = symptom.toLowerCase();
+
+      return symptomTitle.contains(input);
+    }).toList();
+
+    setState(() {
+      symptomsList = suggestions;
+    });
   }
 }

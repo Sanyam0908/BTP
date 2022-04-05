@@ -144,8 +144,7 @@ class SymptomsList {
   }
 
   void deleteData(String data) {
-    // _selectedSymptoms.remove(data);
-    // _selectedSymptoms.removeLast();
+    _selectedSymptoms.remove(data);
   }
 
   List<String> get selectedSymptoms => _selectedSymptoms;

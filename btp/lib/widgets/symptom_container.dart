@@ -10,10 +10,10 @@ class SymptomContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        right: 10,
+        right: 5,
       ),
       padding: EdgeInsets.only(
-        left: 20,
+        left: 10,
         right: 10,
         top: 18,
         bottom: 18,
@@ -22,29 +22,12 @@ class SymptomContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         color: Color(0xFFe4efef),
       ),
-      child: Row(
-        children: [
-          Text(
-            text,
-            style: TextStyle(
-              color: Color(0xFF2d8089),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          GestureDetector(
-            onTap: () {
-              //symptoms.deleteData(text);
-            },
-            child: Icon(
-              Icons.close,
-              size: 15,
-              color: Colors.blueGrey,
-            ),
-          ),
-        ],
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Color(0xFF2d8089),
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
