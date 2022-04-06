@@ -148,4 +148,5 @@ class SymptomsList {
   }
 
   List<String> get selectedSymptoms => _selectedSymptoms;
+  
 }

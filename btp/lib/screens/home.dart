@@ -2,7 +2,6 @@ import 'package:btp/screens/disease.dart';
 import 'package:btp/screens/symptoms.dart';
 import 'package:btp/screens/symptoms_list.dart';
 import 'package:btp/widgets/symptom_column.dart';
-import 'package:btp/widgets/symptom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -84,26 +83,46 @@ class _HomeState extends State<Home> {
                       itemCount: symptoms.selectedSymptoms.length,
                       itemBuilder: (context, index) {
                         final selSymptom = symptoms.selectedSymptoms[index];
-                        return GestureDetector(
-                          // onDoubleTap: () {
-                          //   setState(() {
-                          //     deleteSelected(selSymptom);
-                          //   });
-                          // },
+                        return Container(
+                          margin: EdgeInsets.only(
+                            right: 5,
+                          ),
+                          padding: EdgeInsets.only(
+                            left: 10,
+                            right: 10,
+                            top: 18,
+                            bottom: 18,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Color(0xFFe4efef),
+                          ),
                           child: Row(
                             children: [
-                              SymptomContainer(
-                                text: selSymptom,
+                              Text(
+                                selSymptom,
+                                style: TextStyle(
+                                  color: Color(0xFF2d8089),
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 3,
                               ),
                               GestureDetector(
                                 onTap: () {
                                   setState(() {
                                     deleteSelected(selSymptom);
                                   });
+                                  Get.snackbar(
+                                    'Symptom Removed',
+                                    'Symptom Removed',
+                                    duration: Duration(milliseconds: 600),
+                                  );
                                 },
                                 child: Icon(
                                   Icons.close,
-                                  size: 20,
+                                  size: 18,
                                   color: Colors.blueGrey,
                                 ),
                               ),
@@ -179,6 +198,11 @@ class _HomeState extends State<Home> {
                             selectedSymptoms.add('Fever');
                             setState(() {
                               addSelectedSymptoms();
+                              Get.snackbar(
+                                'Item Selected',
+                                'Symptom Selected',
+                                duration: Duration(milliseconds: 600),
+                              );
                             });
                           }
                         },
@@ -193,6 +217,11 @@ class _HomeState extends State<Home> {
                             selectedSymptoms.add('Cough');
                             setState(() {
                               addSelectedSymptoms();
+                              Get.snackbar(
+                                'Item Selected',
+                                'Symptom Selected',
+                                duration: Duration(milliseconds: 600),
+                              );
                             });
                           }
                         },
@@ -207,6 +236,11 @@ class _HomeState extends State<Home> {
                             selectedSymptoms.add('Vomitting');
                             setState(() {
                               addSelectedSymptoms();
+                              Get.snackbar(
+                                'Item Selected',
+                                'Symptom Selected',
+                                duration: Duration(milliseconds: 600),
+                              );
                             });
                           }
                         },
@@ -221,6 +255,11 @@ class _HomeState extends State<Home> {
                             selectedSymptoms.add('Runnning Nose');
                             setState(() {
                               addSelectedSymptoms();
+                              Get.snackbar(
+                                'Item Selected',
+                                'Symptom Selected',
+                                duration: Duration(milliseconds: 600),
+                              );
                             });
                           }
                         },
@@ -243,6 +282,11 @@ class _HomeState extends State<Home> {
                             selectedSymptoms.add('Diarrhea');
                             setState(() {
                               addSelectedSymptoms();
+                              Get.snackbar(
+                                'Item Selected',
+                                'Symptom Selected',
+                                duration: Duration(milliseconds: 600),
+                              );
                             });
                           }
                         },
@@ -257,6 +301,11 @@ class _HomeState extends State<Home> {
                             selectedSymptoms.add('Headache');
                             setState(() {
                               addSelectedSymptoms();
+                              Get.snackbar(
+                                'Item Selected',
+                                'Symptom Selected',
+                                duration: Duration(milliseconds: 600),
+                              );
                             });
                           }
                         },
@@ -271,6 +320,11 @@ class _HomeState extends State<Home> {
                             selectedSymptoms.add('Shivering');
                             setState(() {
                               addSelectedSymptoms();
+                              Get.snackbar(
+                                'Item Selected',
+                                'Symptom Selected',
+                                duration: Duration(milliseconds: 600),
+                              );
                             });
                           }
                         },
@@ -285,6 +339,11 @@ class _HomeState extends State<Home> {
                             selectedSymptoms.add('Joint Pain');
                             setState(() {
                               addSelectedSymptoms();
+                              Get.snackbar(
+                                'Item Selected',
+                                'Symptom Selected',
+                                duration: Duration(milliseconds: 600),
+                              );
                             });
                           }
                         },

@@ -12,7 +12,7 @@ class Symptoms extends StatefulWidget {
 
 class _SymptomsState extends State<Symptoms> {
   SymptomsList symptoms = SymptomsList();
-  List<bool> _values = List<bool>.filled(133, false);
+  var _values = List<bool>.filled(SymptomsList().symptomsList.length, false);
   List<String> symptomsList = SymptomsList().symptomsList;
   List<String> selectedSymptoms = [];
 
@@ -105,6 +105,11 @@ class _SymptomsState extends State<Symptoms> {
                           onChanged: (value) {
                             setState(() {
                               _values[index] = value!;
+                              // Get.snackbar(
+                              //   'Item Selected',
+                              //   'Symptom Selected',
+                              //   duration: Duration(milliseconds: 600),
+                              // );
                             });
                           },
                           checkColor: Color(0xFF2d8089),
@@ -134,6 +139,13 @@ class _SymptomsState extends State<Symptoms> {
                 updateList();
                 FocusManager.instance.primaryFocus?.unfocus();
                 Get.back(result: selectedSymptoms);
+                Get.snackbar(
+                  'Symptoms Added',
+                  'Symptoms added in the Selected Symptoms column',
+                  duration: Duration(seconds: 1),
+                  isDismissible: true,
+                  dismissDirection: DismissDirection.up,
+                );
               },
               child: Container(
                 decoration: BoxDecoration(

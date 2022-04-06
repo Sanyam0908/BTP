@@ -23,7 +23,7 @@ class ScreenOne extends StatelessWidget {
             Hero(
               tag: 'Title',
               child: Text(
-                "Symptom Check",
+                "Medvic",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 30,
