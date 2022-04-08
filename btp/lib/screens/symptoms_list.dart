@@ -147,6 +147,9 @@ class SymptomsList {
     _selectedSymptoms.remove(data);
   }
 
+  void emptySelected() {
+    _selectedSymptoms = [];
+  }
+
   List<String> get selectedSymptoms => _selectedSymptoms;
-  
 }

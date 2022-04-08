@@ -1,6 +1,7 @@
 import 'package:btp/screens/disease.dart';
 import 'package:btp/screens/symptoms.dart';
 import 'package:btp/screens/symptoms_list.dart';
+import 'package:btp/screens/test.dart';
 import 'package:btp/widgets/symptom_column.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,18 +18,24 @@ class _HomeState extends State<Home> {
   SymptomsList symptoms = SymptomsList();
   List<String> symptomsList = SymptomsList().symptomsList;
 
-  void addSelectedSymptoms() {
-    for (var x = 0; x < selectedSymptoms.length; x++) {
-      if (!symptoms.selectedSymptoms.contains(selectedSymptoms[x])) {
-        symptoms.addData(selectedSymptoms[x]);
+  void addtoSelectedSymptom(List<dynamic> tempSelectedSymptom) {
+    for (var i = 0; i < tempSelectedSymptom.length; i++) {
+      if (!selectedSymptoms.contains(tempSelectedSymptom[i])) {
+        symptoms.addData(tempSelectedSymptom[i]);
       }
     }
+    selectedSymptoms = symptoms.selectedSymptoms;
+  }
+
+  void addSelectedSymptoms(String str) {
+    symptoms.addData(str);
   }
 
   void deleteSelected(String str) {
     symptoms.deleteData(str);
     selectedSymptoms = symptoms.selectedSymptoms;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -171,9 +178,10 @@ class _HomeState extends State<Home> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          selectedSymptoms = await Get.to(() => Symptoms());
+                          var tempSelectedSymptoms =
+                              await Get.to(() => Symptoms());
                           setState(() {
-                            addSelectedSymptoms();
+                            addtoSelectedSymptom(tempSelectedSymptoms);
                           });
                         },
                         child: Text(
@@ -197,7 +205,7 @@ class _HomeState extends State<Home> {
                           if (!selectedSymptoms.contains('Fever')) {
                             selectedSymptoms.add('Fever');
                             setState(() {
-                              addSelectedSymptoms();
+                              addSelectedSymptoms('Fever');
                               Get.snackbar(
                                 'Item Selected',
                                 'Symptom Selected',
@@ -216,7 +224,7 @@ class _HomeState extends State<Home> {
                           if (!selectedSymptoms.contains('Cough')) {
                             selectedSymptoms.add('Cough');
                             setState(() {
-                              addSelectedSymptoms();
+                              addSelectedSymptoms('Cough');
                               Get.snackbar(
                                 'Item Selected',
                                 'Symptom Selected',
@@ -232,10 +240,10 @@ class _HomeState extends State<Home> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if (!selectedSymptoms.contains('Vomitting')) {
-                            selectedSymptoms.add('Vomitting');
+                          if (!selectedSymptoms.contains('Vomiting')) {
+                            selectedSymptoms.add('Vomiting');
                             setState(() {
-                              addSelectedSymptoms();
+                              addSelectedSymptoms('Vomiting');
                               Get.snackbar(
                                 'Item Selected',
                                 'Symptom Selected',
@@ -246,7 +254,7 @@ class _HomeState extends State<Home> {
                         },
                         child: SymptomColumn(
                           imageUrl: 'assets/image/vomit.png',
-                          text: 'Vomitting',
+                          text: 'Vomiting',
                         ),
                       ),
                       GestureDetector(
@@ -254,7 +262,7 @@ class _HomeState extends State<Home> {
                           if (!selectedSymptoms.contains('Runnning Nose')) {
                             selectedSymptoms.add('Runnning Nose');
                             setState(() {
-                              addSelectedSymptoms();
+                              addSelectedSymptoms('Running Nose');
                               Get.snackbar(
                                 'Item Selected',
                                 'Symptom Selected',
@@ -281,7 +289,7 @@ class _HomeState extends State<Home> {
                           if (!selectedSymptoms.contains('Diarrhea')) {
                             selectedSymptoms.add('Diarrhea');
                             setState(() {
-                              addSelectedSymptoms();
+                              addSelectedSymptoms('Diarrhea');
                               Get.snackbar(
                                 'Item Selected',
                                 'Symptom Selected',
@@ -300,7 +308,7 @@ class _HomeState extends State<Home> {
                           if (!selectedSymptoms.contains('Headache')) {
                             selectedSymptoms.add('Headache');
                             setState(() {
-                              addSelectedSymptoms();
+                              addSelectedSymptoms('Headache');
                               Get.snackbar(
                                 'Item Selected',
                                 'Symptom Selected',
@@ -319,7 +327,7 @@ class _HomeState extends State<Home> {
                           if (!selectedSymptoms.contains('Shivering')) {
                             selectedSymptoms.add('Shivering');
                             setState(() {
-                              addSelectedSymptoms();
+                              addSelectedSymptoms('Shivering');
                               Get.snackbar(
                                 'Item Selected',
                                 'Symptom Selected',
@@ -338,7 +346,7 @@ class _HomeState extends State<Home> {
                           if (!selectedSymptoms.contains('Joint Pain')) {
                             selectedSymptoms.add('Joint Pain');
                             setState(() {
-                              addSelectedSymptoms();
+                              addSelectedSymptoms('Joint Pain');
                               Get.snackbar(
                                 'Item Selected',
                                 'Symptom Selected',
@@ -362,12 +370,9 @@ class _HomeState extends State<Home> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) => DiseasePage()),
-                  ),
-                );
+                Get.to(() => Test(), arguments: selectedSymptoms);
+                //selectedSymptoms = [];
+                //SymptomsList().emptySelected();
               },
               child: Container(
                 padding: EdgeInsets.all(20),
