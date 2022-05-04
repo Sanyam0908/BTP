@@ -1,4 +1,6 @@
-class SymptomsList {
+import 'package:get/get.dart';
+
+class SymptomsList extends GetxController {
   final List<String> _symptomsList = [
     "Itching",
     "Skin Rash",
@@ -152,4 +154,23 @@ class SymptomsList {
   }
 
   List<String> get selectedSymptoms => _selectedSymptoms;
+
+  var _values = List.filled(133, false);
+
+  List<bool> get values => _values;
+
+  void checkValue(String data) {
+    int index = _symptomsList.indexOf(data);
+    _values[index] = false;
+  }
+
+  void setValues() {
+    _values = List.filled(133, false);
+  }
+
+  void updateValues(List<bool> values) {
+    for (var x = 0; x < values.length; x++) {
+      _values[x] = values[x];
+    }
+  }
 }

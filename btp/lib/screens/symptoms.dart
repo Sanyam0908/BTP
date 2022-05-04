@@ -12,13 +12,15 @@ class Symptoms extends StatefulWidget {
 
 class _SymptomsState extends State<Symptoms> {
   SymptomsList symptoms = SymptomsList();
-  var _values = List<bool>.filled(SymptomsList().symptomsList.length, false);
+  var tempValues = Get.find<SymptomsList>().values;
   List<String> symptomsList = SymptomsList().symptomsList;
   List<String> selectedSymptoms = [];
 
+  Color activeColor = Colors.grey;
+
   void updateList() {
     for (var x = 0; x < symptomsList.length; x++) {
-      if (_values[x]) {
+      if (tempValues[x]) {
         selectedSymptoms.add(symptomsList[x]);
       }
     }
@@ -26,6 +28,7 @@ class _SymptomsState extends State<Symptoms> {
 
   @override
   Widget build(BuildContext context) {
+    //print(tempValues);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -36,6 +39,7 @@ class _SymptomsState extends State<Symptoms> {
           onTap: () {
             //Navigator.pop(context);
             updateList();
+            SymptomsList().updateValues(tempValues);
             FocusManager.instance.primaryFocus?.unfocus();
             Get.back(result: selectedSymptoms);
           },
@@ -100,30 +104,21 @@ class _SymptomsState extends State<Symptoms> {
                           color: Color(0xFFe4efef),
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: CheckboxListTile(
-                          value: _values[index],
-                          onChanged: (value) {
+                        child: ListTile(
+                          onTap: () {
+                            //print(symptom);
+
                             setState(() {
-                              _values[index] = value!;
-                              // Get.snackbar(
-                              //   'Item Selected',
-                              //   'Symptom Selected',
-                              //   duration: Duration(milliseconds: 600),
-                              // );
+                              tempValues[index] = !tempValues[index];
                             });
                           },
-                          checkColor: Color(0xFF2d8089),
-                          activeColor: Color(0xFFe4efef),
-                          side: BorderSide(
-                            color: Colors.blueGrey,
-                          ),
-                          title: Text(
-                            symptomsList[index],
-                            style: TextStyle(
-                              color: Color(0xFF2d8089),
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          title: Text(symptom),
+                          trailing: tempValues[index]
+                              ? Icon(
+                                  Icons.check,
+                                  color: Colors.green,
+                                )
+                              : Text('ADD'),
                         ),
                       );
                     },
@@ -137,6 +132,7 @@ class _SymptomsState extends State<Symptoms> {
             GestureDetector(
               onTap: () {
                 updateList();
+                SymptomsList().updateValues(tempValues);
                 FocusManager.instance.primaryFocus?.unfocus();
                 Get.back(result: selectedSymptoms);
                 Get.snackbar(

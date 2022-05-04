@@ -1,0 +1,40 @@
+Date : 2022-04-29 05:27:27
+Directory : c:\Users\Sanyam Lodha\FlutterProjects\btp\lib
+Total : 12 files,  1517 codes, 26 comments, 76 blanks, all 1619 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Dart     |         12 |      1,517 |         26 |         76 |      1,619 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                       | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                          |         12 |      1,517 |         26 |         76 |      1,619 |
+| models                                                                     |          1 |         59 |          0 |          2 |         61 |
+| screens                                                                    |          8 |      1,387 |         26 |         62 |      1,475 |
+| utils                                                                      |          1 |         11 |          0 |          5 |         16 |
+| widgets                                                                    |          1 |         34 |          0 |          3 |         37 |
++----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                   | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\main.dart                    | Dart     |         26 |          0 |          4 |         30 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\models\disease_model.dart    | Dart     |         59 |          0 |          2 |         61 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\screens\disease.dart         | Dart     |         82 |         12 |          4 |         98 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\screens\disease_info.dart    | Dart     |         22 |          0 |          4 |         26 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\screens\home.dart            | Dart     |        437 |          1 |          9 |        447 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\screens\screen_one.dart      | Dart     |         36 |          0 |          3 |         39 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\screens\symptom_checker.dart | Dart     |        239 |          3 |          4 |        246 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\screens\symptoms.dart        | Dart     |        158 |          6 |          9 |        173 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\screens\symptoms_list.dart   | Dart     |        160 |          0 |         12 |        172 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\screens\test.dart            | Dart     |        253 |          4 |         17 |        274 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\utils\dimensions.dart        | Dart     |         11 |          0 |          5 |         16 |
+| c:\Users\Sanyam Lodha\FlutterProjects\btp\lib\widgets\symptom_column.dart  | Dart     |         34 |          0 |          3 |         37 |
+| Total                                                                      |          |      1,517 |         26 |         76 |      1,619 |
++----------------------------------------------------------------------------+----------+------------+------------+------------+------------+

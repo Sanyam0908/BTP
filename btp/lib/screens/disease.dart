@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:btp/screens/medicines.dart';
 
 class DiseasePage extends StatelessWidget {
   const DiseasePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Map<String, String> data = Medicines().medicines;
+    Map<String, List<String>> info = Medicines().example;
     return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back,
-          ),
+      body: Center(
+        child: Text(
+          info['GERD'].toString(),
         ),
-        title: Text(
-          'MedBuddy',
-        ),
-        backgroundColor: Color(0xFF2d8089),
       ),
     );
   }
