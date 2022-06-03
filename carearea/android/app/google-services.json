@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "642220910555",
+    "project_id": "carearea-48f56",
+    "storage_bucket": "carearea-48f56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642220910555:android:70f23a5d37f94c658529fe",
+        "android_client_info": {
+          "package_name": "com.example.carearea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642220910555-kafsk8rg4cdgrsieqjkqaa8rn98bb7l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf_iGRWs6D0z9C2TtG8d5I8LMLTBY4G3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642220910555-kafsk8rg4cdgrsieqjkqaa8rn98bb7l5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
